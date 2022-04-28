@@ -2,5 +2,8 @@
   "name": "appone",
   "devDependencies": {
     "@capacitor/cli": "3.5.0"
+  },
+  "dependencies": {
+    "@capacitor/android": "3.5.0"
   }
 }
