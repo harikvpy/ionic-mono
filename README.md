@@ -41,13 +41,9 @@ The following steps outline the process involved in setting up a monorepo for bu
    $ cd ../..
    $ ionic integrations enable capacitor --project=app-one
    ```
-5. By default angular is configured to write the app build output to `dist/<app_name>` folder.
-   We want to change it to `dist/apps/<app_name>` so that `dist/` folder structure mimics the project folder structure. So create dist folder for the ionic build output first. After this update the project's `outputPath` in `angular.json` replacing `dist/app-one` with `dist/apps/app-one`.
-   ```
-   $ mkdir -p dist/apps/app-one
-   ```
-6. Rightfully this should be enough to build `app-one`. However, if you issue `ionic build 
-   --project app-one` now, you will get the error
+5. By default angular is configured to write the app build output to `dist/<app_name>` folder. Though not required, it's a good idea to change it to `dist/apps/<app_name>` so that `dist/` folder structure mimics the project folder structure. So update the project's `outputPath` in `angular.json` replacing `dist/app-one` with `dist/apps/app-one`.
+
+6. Rightfully this should be enough to build `app-one`. However, if you issue `ionic build --project app-one` now, you will get the error
    ```
    Error: ENOENT: no such file or directory, open '.../apps/app-one/package.json'
    ```
