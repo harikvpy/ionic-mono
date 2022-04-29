@@ -1,9 +1,7 @@
-<! -- no toc -->
 # Ionic/Capacitor Monorepo
  
 This is a sample repository that shows how to setup a monorepo for building multiple Ionic Angular apps with no external tools other than the standard Ionic & Angular CLIs.
 
-<! -- no toc -->
 # Table of Contents
   - [Background](#background)
   - [Steps](#steps)
