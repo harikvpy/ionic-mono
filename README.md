@@ -9,6 +9,8 @@ This is a sample repository that shows how to setup a monorepo for building mult
   - [Script to automate root config file creation](#script-to-automate-root-config-file-creation)
   - [Adding a project](#adding-a-project)
   - [Adding a library](#adding-a-library)
+  - [How to use](#how-to-use)
+  - [To do](#to-do)
 
 # Background
 
@@ -16,7 +18,7 @@ My first attempt at setting up a monorepo was following the official documentati
 
 Overall the Wiki page looks more thorough, but it only shows the setup for a project consisting of an app and a web page. Trying to extend it support multiple apps, one will face the issue of the platform output folder for the two apps conflicting with each other.
 
-One way to address the above is to use [NX](https://nx.dev/) to setup the project environment and manage the build. There's an NX Ionic [plugin](https://nxtend.dev/docs/ionic-angular/overview) to help with this, which works well. That is until you need to use the `--livereload` to test the fine changes to the app code on a device. Unfortunately I couldn't find a reliable way to get this working. This limitation along with the fact that the plugin has not seen much recent activity led me to this project.
+One way to address the above is to use [NX](https://nx.dev/) to setup the project environment and manage the build. There's an NX Ionic [plugin](https://nxtend.dev/docs/ionic-angular/overview) to help with this, which works well. That is until you need to use the `--livereload` to test changes to the app on an attached device. Unfortunately I couldn't find a reliable way to get this working. This limitation along with the fact that the plugin has not seen much recent activity led me to this project.
 
 # Steps
 The following steps outline the process involved in setting up a monorepo for building multiple Ionic apps. The first few steps follow what's outlined in the [Wiki](https://github.com/ionic-team/ionic-cli/wiki/Angular-Monorepo) page.
@@ -155,3 +157,11 @@ To add a new ionic project, repeat steps 2~7 with the new app name. You can omit
 Adding a library is quite straightforward and follows the standard Angular CLI guidelines. Creating subentry points within the library and the interdependencies between them requires a bit of tweaking. While I can write about it here, I think it's better I defer it to this rather detailed [post](https://sandroroth.com/blog/angular-library).
 
 I couldn't find a better explanation on the web, especially when it comes to integrating everything together while making VS Code happy.
+
+# How to use
+Clone this repo and issue `$ ionic serve --project app-one`. This should open up the browser with the app as you would expect.
+
+Issue `$ ./runcap run android --project app-one` and you'll see ionic build `app-one` and add the `android` platform support to it. It should then launch the Gradle build system  and when that is finished it should open the app on an attached device (if there's only one) or ask you to choose a device to run on from a list.
+
+# To do
+Verify everything works on `ios`.
