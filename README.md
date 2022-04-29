@@ -26,17 +26,19 @@ The following steps outline the process involved in setting up a monorepo for bu
    $ cd apps/app-one
    $ ionic init app --type=angular --default --project-id=app-one
    ```
-3. Enable capacitor integrations for the app. (from workspace folder)
+3. Replace the Angular generated app files with Ionic app template. I chose the blank app template. Tthat is copy over the `src\app` folder from a pure Ionic app template to `apps/app-one/src/app`. Depending on the app template you may have to copy the `assets` & `theme` folders too.
+
+4. Enable capacitor integrations for the app. (from workspace folder)
    ```
    $ cd ../..
    $ ionic integrations enable capacitor --project=app-one
    ```
-4. By default angular is configured to write the app build output to `dist/<app_name>` folder.
+5. By default angular is configured to write the app build output to `dist/<app_name>` folder.
    We want to change it to `dist/apps/<app_name>` so that `dist/` folder structure mimics the project folder structure. So create dist folder for the ionic build output first. After this update the project's `outputPath` in `angular.json` replacing `dist/app-one` with `dist/apps/app-one`.
    ```
    $ mkdir -p dist/apps/app-one
    ```
-5. Rightfully this should be enough to build `app-one`. However, if you issue `ionic build 
+6. Rightfully this should be enough to build `app-one`. However, if you issue `ionic build 
    --project app-one` now, you will get the error
    ```
    Error: ENOENT: no such file or directory, open '.../apps/app-one/package.json'
@@ -54,10 +56,10 @@ The following steps outline the process involved in setting up a monorepo for bu
    ```
    $ ionic build --project app-one
    ```
-6. You should see build output in `dist/apps/app-one`. You'll also notice that `node_modules` is 
+7. You should see build output in `dist/apps/app-one`. You'll also notice that `node_modules` is 
    created under `apps/app-one`. This is where NPM caches the dependencies build output, ostensibly to speed future builds. Create `.gitignore` in `apps/app-one` to exclude `node_modules` from the Git repo.
 
-7. Create `apps/app-one/capacitor.config.ts` with the following contents:
+8. Create `apps/app-one/capacitor.config.ts` with the following contents:
    ```
    import { CapacitorConfig } from '@capacitor/cli';
 
@@ -78,7 +80,7 @@ The following steps outline the process involved in setting up a monorepo for bu
 
    export default config;
    ```
-8. Create another `capacitor.config.ts` in the workspace root folder with the following contents:
+9.  Create another `capacitor.config.ts` in the workspace root folder with the following contents:
    ```
    import { CapacitorConfig } from '@capacitor/cli';
 
@@ -94,7 +96,7 @@ The following steps outline the process involved in setting up a monorepo for bu
 
    For a multi-app project, constantly updating this to point to the right project that you're working on can be a pain. We can automate this via a simple script, which is described [here](#runcap).
 
-9.  Sync & build the app
+11. Sync & build the app
    ```
    $ ionic cap sync android --project app-one
    $ ionic cap run android --livereload --external --project app-one
