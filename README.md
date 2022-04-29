@@ -1,7 +1,18 @@
+<! -- no toc -->
 # Ionic/Capacitor Monorepo
-
+ 
 This is a sample repository that shows how to setup a monorepo for building multiple Ionic Angular apps with no external tools other than the standard Ionic & Angular CLIs.
 
+<! -- no toc -->
+# Table of Contents
+  - [Background](#background)
+  - [Steps](#steps)
+  - [Need for extra capacitor config file](#need-for-extra-capacitor-config-file)
+  - [Script to automate root config file creation](#script-to-automate-root-config-file-creation)
+  - [Adding a project](#adding-a-project)
+  - [Adding a library](#adding-a-library)
+</header>
+<main>
 # Background
 
 My first attempt at setting up a monorepo was following the official documentation on Ionic's website. There are really two pieces that point to this -- the CLI [doc](https://ionicframework.com/docs/cli/configuration#multi-app-projects) on multi-apps and a related [Wiki](https://github.com/ionic-team/ionic-cli/wiki/Angular-Monorepo) page. Unfortunately, the two 'official' pieces of documentation are not really synced very well. Whereas the CLI doc shows the basics of running the CLI for a multi-app project, the latter uses the Angular CLI to set things up.
@@ -10,7 +21,7 @@ Overall the Wiki page looks more thorough, but it only shows the setup for a pro
 
 One way to address the above is to use [NX](https://nx.dev/) to setup the project environment and manage the build. There's an NX Ionic [plugin](https://nxtend.dev/docs/ionic-angular/overview) to help with this, which works somewhat well. That is until you need to use the `--livereload` to test the fine changes to the app code on a device. Unfortunately I couldn't find a reliable way to get this working. This limitation along with the fact that the plugin has not seen much recent activity led me to this project.
 
-# Solution
+# Steps
 The following steps outline the process involved in setting up a monorepo for building multiple Ionic apps. The first few steps follow what's outlined in the [Wiki](https://github.com/ionic-team/ionic-cli/wiki/Angular-Monorepo) page.
 
 1. Create a new empty Angular workspace
@@ -130,7 +141,7 @@ The following steps outline the process involved in setting up a monorepo for bu
 
    I suspect this is a bug and hope Ionic will address this soon. Or I'm doing something wrong and this is a consequence of that mistake.
 
-# <a name="runcap"></a>Script to automate root config file creation
+# Script to automate root config file creation
 
 Since the `capacitor.config.ts` at workspace root is used purely to prevent the CLI from wrongly creating the platform folder for the project, we can create a small script to act as a wrapper around the `ionic cap` command. All this script would do is read the value of `--project` argument and create a `capacitor.config.ts` with the right android/ios path set. Then it would and launch `ionic cap...` command with all the original arguments passed to it. This way `ionic cap` continues to work as the user would expect it to.
 
@@ -151,3 +162,4 @@ To add a new ionic project, repeat steps 2~7 with the new app name. You can omit
 Adding a library is quite straightforward and follows the standard Angular CLI guidelines. Creating subentry points within the library and the interdependencies between them requires a bit of tweaking. While I can write about it here, I think it's better I defer it to this rather detailed [post](https://sandroroth.com/blog/angular-library).
 
 I couldn't find a better explanation on the web, especially when it comes to integrating everything together while making VS Code happy.
+</main>
