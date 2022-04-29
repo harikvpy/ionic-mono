@@ -1,3 +1,5 @@
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/harikvpy)
+
 # Ionic/Capacitor Monorepo
  
 This is a sample repository that shows how to setup a monorepo for building multiple Ionic Angular apps with no external tools other than the standard Ionic & Angular CLIs.
