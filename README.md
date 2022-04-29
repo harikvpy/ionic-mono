@@ -146,4 +146,6 @@ And so on..
 To add a new ionic project, repeat steps 2~7 with the new app name. You can omit step 8 as you can use `./runcap` to manage that process.
 
 # Adding a library
-TBD
+Adding a library is quite straightforward and follows the standard Angular CLI guidelines. Creating subentry points within the library and the interdependencies between them requires a bit of tweaking. While I can write about it here, I think it's better I defer it to a quite a detailed post [here](https://sandroroth.com/blog/angular-library).
+
+I couldn't find a better explanation on the web, especially when it comes to integrating everything together while making VS Code happy.
