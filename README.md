@@ -9,8 +9,7 @@ This is a sample repository that shows how to setup a monorepo for building mult
   - [Script to automate root config file creation](#script-to-automate-root-config-file-creation)
   - [Adding a project](#adding-a-project)
   - [Adding a library](#adding-a-library)
-</header>
-<main>
+
 # Background
 
 My first attempt at setting up a monorepo was following the official documentation on Ionic's website. There are really two pieces that point to this -- the CLI [doc](https://ionicframework.com/docs/cli/configuration#multi-app-projects) on multi-apps and a related [Wiki](https://github.com/ionic-team/ionic-cli/wiki/Angular-Monorepo) page. Unfortunately, the two 'official' pieces of documentation are not really synced very well. Whereas the CLI doc shows the basics of running the CLI for a multi-app project, the latter uses the Angular CLI to set things up.
@@ -160,4 +159,3 @@ To add a new ionic project, repeat steps 2~7 with the new app name. You can omit
 Adding a library is quite straightforward and follows the standard Angular CLI guidelines. Creating subentry points within the library and the interdependencies between them requires a bit of tweaking. While I can write about it here, I think it's better I defer it to this rather detailed [post](https://sandroroth.com/blog/angular-library).
 
 I couldn't find a better explanation on the web, especially when it comes to integrating everything together while making VS Code happy.
-</main>
