@@ -16,7 +16,7 @@ My first attempt at setting up a monorepo was following the official documentati
 
 Overall the Wiki page looks more thorough, but it only shows the setup for a project consisting of an app and a web page. Trying to extend it support multiple apps, one will face the issue of the platform output folder for the two apps conflicting with each other.
 
-One way to address the above is to use [NX](https://nx.dev/) to setup the project environment and manage the build. There's an NX Ionic [plugin](https://nxtend.dev/docs/ionic-angular/overview) to help with this, which works somewhat well. That is until you need to use the `--livereload` to test the fine changes to the app code on a device. Unfortunately I couldn't find a reliable way to get this working. This limitation along with the fact that the plugin has not seen much recent activity led me to this project.
+One way to address the above is to use [NX](https://nx.dev/) to setup the project environment and manage the build. There's an NX Ionic [plugin](https://nxtend.dev/docs/ionic-angular/overview) to help with this, which works well. That is until you need to use the `--livereload` to test the fine changes to the app code on a device. Unfortunately I couldn't find a reliable way to get this working. This limitation along with the fact that the plugin has not seen much recent activity led me to this project.
 
 # Steps
 The following steps outline the process involved in setting up a monorepo for building multiple Ionic apps. The first few steps follow what's outlined in the [Wiki](https://github.com/ionic-team/ionic-cli/wiki/Angular-Monorepo) page.
