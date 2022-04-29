@@ -128,7 +128,7 @@ The following steps outline the process involved in setting up a monorepo for bu
 
    I suspect this is a bug and hope Ionic will address this soon. Or I'm doing something wrong and this is a consequence of that mistake.
 
-# [Script to automate root config file creation](#runcap)
+# <a name="runcap"></a>Script to automate root config file creation
 
 Since the `capacitor.config.ts` at workspace root is used purely to prevent the CLI from wrongly creating the platform folder for the project, we can create a small script to act as a wrapper around the `ionic cap` command. All this script would do is read the value of `--project` argument and create a `capacitor.config.ts` with the right android/ios path set. Then it would and launch `ionic cap...` command with all the original arguments passed to it. This way `ionic cap` continues to work as the user would expect it to.
 
