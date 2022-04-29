@@ -110,4 +110,5 @@ The following steps outline the process involved in setting up a monorepo for bu
 # Script to automate step 8
 
 Since the `capacitor.config.ts` at workspace root is used purely to control the CLI from wrongly creating the platform folder for the project, we can create a small script to act as a wrapper around the `ionic cap` command. All this script would do is to depending on the value of `--project` create a `capacitor.config.ts` and launch `ionic cap...` command with all the other args intact. This way `ionic cap` continues to work as the user would expect it to.
- 
+
+To use the script
