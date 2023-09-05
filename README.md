@@ -95,14 +95,17 @@ The following steps outline the process involved in setting up a monorepo for bu
    const config: CapacitorConfig = {
       android: {
          path: './apps/app-one/android'
+      },
+      ios: {
+         path: './apps/app-one/ios'
       }
    };
 
    export default config;
    ```
-   This is to inform `ionic cap` the location of the android app folder for the `app-one` project. Unfortunately `ionic cap` doesn't seem to obey the `--project` command parameter value when it comes to checking the presence of `platform` folder and creates it under the folder where it is invoked from. This config file will prevent this.
+   This is to inform `ionic cap` CLI the location of the android/ios app folder for the `app-one` project. Unfortunately `ionic cap` doesn't seem to obey the `--project` command parameter value when it comes to checking the presence of `platform` folder and creates it under the folder where it is invoked from. This config file will prevent this.
 
-   For a multi-app project, constantly updating this to point to the right project that you're working on can be a pain. We can automate this via a simple script, which is described [here](#runcap).
+   For a multi-app project, constantly updating this to point to the right project that you're working on can be a pain. We can automate this via a simple script. The script would mimic `ionic cap` command by invoking it, but before it does that, it would dynamically generate a temporary `capacitor.config.ts` file with the chosen project settings. The project includes such a script, `runcap`, which is discussed [here](#runcap).
 
 11. Sync & build the app
    ```
@@ -138,8 +141,7 @@ The following steps outline the process involved in setting up a monorepo for bu
 
    I suspect this is a bug and hope Ionic will address this soon. Or I'm doing something wrong and this is a consequence of that mistake.
 
-# Script to automate root config file creation
-
+# Runcap
 Since the `capacitor.config.ts` at workspace root is used purely to prevent the CLI from wrongly creating the platform folder for the project, we can create a small script to act as a wrapper around the `ionic cap` command. All this script would do is read the value of `--project` argument and create a `capacitor.config.ts` with the right android/ios path set. Then it would and launch `ionic cap...` command with all the original arguments passed to it. This way `ionic cap` continues to work as the user would expect it to.
 
 So for example to sync the project you can issue:
@@ -164,6 +166,3 @@ I couldn't find a better explanation on the web, especially when it comes to int
 Clone this repo and issue `$ ionic serve --project app-one`. This should open up the browser with the app as you would expect.
 
 Issue `$ ./runcap run android --project app-one` and you'll see ionic build `app-one` and add the `android` platform support to it. It should then launch the Gradle build system  and when that is finished it should open the app on an attached device (if there's only one) or ask you to choose a device to run on from a list.
-
-# To do
-Verify everything works on `ios`.
